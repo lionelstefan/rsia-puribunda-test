@@ -1,0 +1,71 @@
+FROM php:8.1-fpm
+
+ENV USER=www
+ENV GROUP=www
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    autoconf \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    zlib1g-dev
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+# RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
+#     gd \
+#     bcmath \
+#     json \
+#     bz2 \
+#     gettext \
+#     curl \
+#     http \
+#     mcrypt \
+#     mbstring \
+#     opcache \
+#     sockets \
+#     redis \
+#     xmlrpc \
+#     dom \
+#     zip \
+#     gmp \
+#     exif \
+#     opcache \
+
+
+
+WORKDIR /var/www/
+
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# RUN alias composer='php /usr/bin/composer'
+
+# RUN composer install
+
+RUN groupadd -g 1000 ${GROUP} && useradd -u 1000 -ms /bin/bash -g ${GROUP} ${USER}
+
+RUN chown -R ${USER} /var/www
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - 
+RUN apt-get install -y nodejs
+
+COPY package*.json /var/www/
+
+RUN npm install
+
+# Select User
+USER ${USER}
+
+# Copy permission to selected user
+COPY --chown=${USER}:${GROUP} . .
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
