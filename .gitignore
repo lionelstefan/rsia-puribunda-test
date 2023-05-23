@@ -1,4 +1,11 @@
+.gitignore
 .env
 composer.lock
 package-lock.json
 /vendor
+/node_modules
+/public/hot
+/public/storage
+/public/js
+/public/fonts
+/storage/*.key
