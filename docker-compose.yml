@@ -1,11 +1,5 @@
 version: '3.8'
 
-networks:
-  app-network:
-
-volumes:
-  app-data:
-
 services:
   puribundasrv:
     image: nginx:1.21.6-alpine
@@ -32,3 +26,29 @@ services:
       # - .docker/php/logs/php_access.log:/var/log/access.log
     networks:
       app-network:
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_DATABASE: puribunda
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - .docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local

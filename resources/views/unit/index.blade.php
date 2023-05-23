@@ -1,6 +1,6 @@
 @extends('master')
-@section('title_page', 'Dashboard')
-@section('header_page', 'List Promo')
+@section('title_page', 'Unit')
+@section('header_page', 'List Unit')
 <style type="text/css">
     .dataTables_processing {
         position: absolute;
@@ -27,14 +27,11 @@
     {{Session::get('fail')}}
 </div>
 @endif
-<table id="tbl-promo" class="table table-striped table-bordered" style="width:100%">
+<table id="tbl-unit" class="table table-striped table-bordered" style="width:100%">
     <thead>
         <tr>
             <th>No</th>
-            <th>Title</th>
-            <th>Start Promo</th>
-            <th>End Promo</th>
-            <th>Description</th>
+            <th>Nama Unit</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -50,16 +47,16 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script>
     $(document).ready(function() {
-    var dataTable = $('#tbl-promo').DataTable({
+        var dataTable = $('#tbl-unit').DataTable({
             //"responsive": true,            
             "processing": true,
             "serverSide": true,
-            "scrollX": true,            
+            "scrollX": true,
             "responsive":true,
             language: {
                 "processing": "<div style='margin-top:12% !important;'><i class='fa fa-spinner fa-spin fa-3x fa-fw'></i>Processing...</div>",
             },
-            "ajax": "{{ url('dataPromo') }}",
+            "ajax": "{{ url('get-all-unit') }}",
             columnDefs: [{
                 "defaultContent": "-",
                 "targets": "_all"
@@ -71,22 +68,10 @@
                     width: '10px',
                     orderable: false, 
                     searchable: false
-                },                
-                {
-                    data: "title",
-                    name: "title"
                 },
                 {
-                    data: "start_date",
-                    name: "start_date"
-                },
-                {
-                    data: "end_date",
-                    name: "end_date"
-                },
-                {
-                    data: "desc",
-                    name: "desc"
+                    data: "name",
+                    name: "name"
                 },
                 {
                     data:"action",
@@ -104,7 +89,7 @@
                             icon: 'warning',                                                        
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',      
-                            confirmButtonText: 'Yes, delete it!',
+                            confirmButtonText: 'Yes',
                             showCancelButton: true,                      
                         }).then((result) => {
                             if (result.isConfirmed) {   
@@ -132,7 +117,7 @@
                         });                                               
                     });                    
                 }
-            });
+            });            
         });
 </script>
 @endsection

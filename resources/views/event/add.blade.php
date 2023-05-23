@@ -21,9 +21,9 @@
             <div class="col-sm-6 col-12">
                 <select name="venue_location" id="venue_location" class="form-control">
                     <option value="">Select Location</option>
-                    @foreach ($dataVenue as $data)
-                        <option value="{{ $data['key'] }}">{{ $data['data']['title_venue'] }}</option>
-                    @endforeach
+                    {{-- @foreach ($dataVenue as $data)
+                        <option value="{{ $data['key'] }}">{{ $data['data']['title_venue'] }}</option> --}}
+                    {{-- @endforeach --}}
                 </select>
             </div>
         </div>

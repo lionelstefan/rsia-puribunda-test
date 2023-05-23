@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
+
 
 class LoginController extends Controller
 {
@@ -17,22 +19,27 @@ class LoginController extends Controller
 
 	public function checkLogin(Request $request)
 	{
-		$user_name = $request->input('user_name');
-		$password  = $request->input('password');
 
-		if ($user_name == 'backadmin' && $password == 'puribunda') {
-			session([
-				'username' 	=> $user_name,
-			]);
-			return redirect()->route('backend.home');
-		} else {
-			return Redirect::to('/')->withFail('Username / password salah!');
-		}
+		$credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
+		$user = User::where('username', $credentials['username'])->first();
+
+        if ($credentials['password'] === $user->password) {
+            $request->session()->regenerate();
+			Auth::login($user);
+ 
+            return redirect()->route('backend.home');
+        }
+ 
+        return back()->withFail('Username / Password salah !');
 	}
 
 	public function logout(Request $request)
 	{
-		Session::flush();
+		Auth::logout();
 		return redirect('/');
 	}
 }

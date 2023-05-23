@@ -31,7 +31,7 @@
                     </div>
                     <h1>Welcome Back!</h1>
                     <div class="input-box">
-                        <input type="text" id="user_name" name="user_name" autocomplete="off" required>
+                        <input type="text" id="username" name="username" autocomplete="off" required>
                         <i class="fa-solid fa-user"></i>
                         <span>Username</span>
                     </div>

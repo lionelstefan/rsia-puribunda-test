@@ -19,9 +19,7 @@ class DashboardAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        $username = session('username');
-
-        if (empty($username) || $username != 'backadmin') {
+        if (!Auth::check()) {
 			Session::flush();
             return Redirect::to('/');
         }

@@ -19,27 +19,20 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-# RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
-#     gd \
-#     bcmath \
-#     json \
-#     bz2 \
-#     gettext \
-#     curl \
-#     http \
-#     mcrypt \
-#     mbstring \
-#     opcache \
-#     sockets \
-#     redis \
-#     xmlrpc \
-#     dom \
-#     zip \
-#     gmp \
-#     exif \
-#     opcache \
-
-
+RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
+    gd \
+    bcmath \
+    ctype \
+    json \
+    fileinfo \
+    gettext \
+    curl \
+    mcrypt \
+    openssl \
+    mbstring \
+    tokenizer \
+    xmlrpc \
+    pdo_mysql
 
 WORKDIR /var/www/
 

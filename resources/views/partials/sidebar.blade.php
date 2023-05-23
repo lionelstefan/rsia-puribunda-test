@@ -38,51 +38,53 @@
     <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="{{ url('home') }}">dragon dashboard</a>
+                <a href="{{ url('home') }}">dashboard</a>
                 <div id="close-sidebar"><i class="fas fa-times"></i></div>
             </div>
             <!-- sidebar-brand -->
-            <div class="sidebar-header">
-                <div class="user-pic" style="color:#fff;">
-                    <i class="fa fa-user-circle fa-4x" aria-hidden="true"></i>
-                </div>
-                <div class="user-info">
-                    <span class="user-name"> <strong>Renaldy Cahya</strong></span>
-                    <span class="user-role">Administrator</span>
-                    <span class="user-status"><i class="fa fa-circle"></i> <span>Online</span></span>
-                </div>
-            </div>
+            <!-- <div class="sidebar-header"> -->
+            <!--     <div class="user-pic" style="color:#fff;"> -->
+            <!--         <i class="fa fa-user-circle fa-4x" aria-hidden="true"></i> -->
+            <!--     </div> -->
+            <!--     <div class="user-info"> -->
+            <!--         <span class="user-name"> <strong>Renaldy Cahya</strong></span> -->
+            <!--         <span class="user-role">Administrator</span> -->
+            <!--         <span class="user-status"><i class="fa fa-circle"></i> <span>Online</span></span> -->
+            <!--     </div> -->
+            <!-- </div> -->
             <div class="sidebar-menu">
                 <ul>
                     <li class="header-menu"><span>General</span></li>
                     <li class="sidebar-dropdown">
-                        <a href="#"><i class="fa fa-calendar"></i><span>Event</span></a>
+                        <a href="#"><i class="fa fa-calendar"></i><span>Unit</span></a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li><a href="{{ url('listEvent') }}">List Event</a></li>
-                                <li><a href="{{ url('addEvent') }}">Create Event</a></li>
+                                <li><a href="{{ url('list-unit') }}">List</a></li>
+                                <li><a href="{{ url('create-unit') }}">Create</a></li>
                             </ul>
                         </div>
                     </li>
-                    <!-- Dashboard -->
+
                     <li class="sidebar-dropdown">
-                        <a href="#"><i class="fa fa-percent"></i><span>Promo</span></a>
+                        <a href="#"><i class="fa fa-calendar"></i><span>Jabatan</span></a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li><a href="{{ url('listPromo') }}">List Promo</a></li>
-                                <li><a href="{{ url('addPromo') }}">Create Promo</a></li>                                
+                                <li><a href="{{ url('list-jabatan') }}">List</a></li>
+                                <li><a href="{{ url('create-jabatan') }}">Create</a></li>
                             </ul>
                         </div>
                     </li>
-                    <!-- E-commerce -->
+
                     <li class="sidebar-dropdown">
-                        <a href="#"><i class="far fa-gem"></i><span>Transaction</span></a>
+                        <a href="#"><i class="fa fa-calendar"></i><span>Karyawan</span></a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li><a href="{{ route('listTransaction.index') }}">List Transaction</a></li>
+                                <li><a href="{{ url('list-karyawan') }}">List</a></li>
+                                <li><a href="{{ url('create-karyawan') }}">Create</a></li>
                             </ul>
                         </div>
                     </li>
+                    
 
                 </ul>
             </div>
@@ -98,11 +100,5 @@
     </nav>
     <!-- sidebar-wrapper  -->
     <!-- page-content" -->
-    <!-- <main class="page-content">
-        <div class="container-fluid">
-            <h2>Welcome Dragon Dashboard!</h2>
-            <hr>
-        </div>
-    </main> -->
 <!-- </div> -->
 <!-- page-wrapper" -->
